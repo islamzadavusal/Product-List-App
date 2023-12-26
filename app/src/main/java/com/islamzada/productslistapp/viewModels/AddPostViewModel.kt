@@ -9,4 +9,12 @@ class AddPostViewModel: ViewModel() {
     val code = MutableLiveData<String>()
     val description = MutableLiveData<String>()
 
+    fun isInputValid(): Boolean {
+        val name = name.value.orEmpty()
+        val code = code.value.orEmpty()
+        val description = description.value.orEmpty()
+
+        return name.isNotEmpty() && code.isNotEmpty() && description.isNotEmpty()
+    }
+
 }

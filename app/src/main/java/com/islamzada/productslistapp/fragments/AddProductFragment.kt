@@ -28,7 +28,7 @@ class AddProductFragment : Fragment() {
         binding.viewModel = viewModel
 
         binding.buttonOnClick.setOnClickListener {
-            if (isInputValid()) {
+            if (viewModel.isInputValid()) {
                 val bundle = Bundle()
                 val product = Product(
                     viewModel.name.value.orEmpty(),
@@ -47,11 +47,5 @@ class AddProductFragment : Fragment() {
         return binding.root
     }
 
-    private fun isInputValid(): Boolean {
-        val name = viewModel.name.value.orEmpty()
-        val code = viewModel.code.value.orEmpty()
-        val description = viewModel.description.value.orEmpty()
 
-        return name.isNotEmpty() && code.isNotEmpty() && description.isNotEmpty()
-    }
 }
