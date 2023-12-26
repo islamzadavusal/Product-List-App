@@ -27,32 +27,31 @@ class AddProductFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
+        binding.buttonOnClick.setOnClickListener {
+            if (isInputValid()) {
+                val bundle = Bundle()
+                val product = Product(
+                    viewModel.name.value.orEmpty(),
+                    viewModel.code.value.orEmpty().toInt(),
+                    viewModel.description.value.orEmpty()
+                )
+                bundle.putParcelable("product", product)
+
+                parentFragmentManager.setFragmentResult("newProduct", bundle)
+                Toast.makeText(requireContext(), "Product added", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
+            }
+        }
+
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        observeAll()
-    }
+    private fun isInputValid(): Boolean {
+        val name = viewModel.name.value.orEmpty()
+        val code = viewModel.code.value.orEmpty()
+        val description = viewModel.description.value.orEmpty()
 
-    private fun observeAll() {
-        viewModel.newProductCallBack.observe(viewLifecycleOwner) {
-            val bundle = Bundle()
-            val product = Product(
-                viewModel.name.value.orEmpty(),
-                viewModel.code.value.orEmpty().toInt(),
-                viewModel.description.value.orEmpty()
-            )
-            bundle.putParcelable("product", product)
-
-            parentFragmentManager.setFragmentResult("newProduct", bundle)
-            Toast.makeText(requireContext(), "Product added", Toast.LENGTH_SHORT).show()
-        }
-
-        viewModel.error.observe(viewLifecycleOwner) {
-            if (!it.isNullOrEmpty()) {
-                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-            }
-        }
+        return name.isNotEmpty() && code.isNotEmpty() && description.isNotEmpty()
     }
 }
