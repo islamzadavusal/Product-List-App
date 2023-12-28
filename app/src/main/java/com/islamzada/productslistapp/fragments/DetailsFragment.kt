@@ -5,15 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.islamzada.productslistapp.R
 import com.islamzada.productslistapp.databinding.FragmentDetailsBinding
+import com.islamzada.productslistapp.viewModels.AddPostViewModel
 import com.islamzada.productslistapp.viewModels.DetailsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
-    private lateinit var viewModel: DetailsViewModel
+//    private lateinit var viewModel: DetailsViewModel
+
+    val viewModel: DetailsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,7 +26,7 @@ class DetailsFragment : Fragment() {
     ): View? {
         binding = FragmentDetailsBinding.inflate(inflater)
 
-        viewModel = ViewModelProvider(this)[DetailsViewModel::class.java]
+//        viewModel = ViewModelProvider(this)[DetailsViewModel::class.java]
 
 
         binding.lifecycleOwner = this

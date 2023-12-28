@@ -5,15 +5,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.islamzada.productslistapp.entity.Product
 import com.islamzada.productslistapp.repository.ProductRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AddPostViewModel: ViewModel() {
+@HiltViewModel
+class AddPostViewModel @Inject constructor (var repository: ProductRepository): ViewModel() {
 
     val name = MutableLiveData<String>()
     val code = MutableLiveData<String>()
     val description = MutableLiveData<String>()
 
-    lateinit  var productRepository: ProductRepository
+//    lateinit  var productRepository: ProductRepository
 
     fun isInputValid(): Boolean {
         val name = name.value.orEmpty()
@@ -25,7 +28,7 @@ class AddPostViewModel: ViewModel() {
 
     fun insert(product: Product) {
         viewModelScope.launch {
-            productRepository.insert(product)
+            repository.insert(product)
         }
     }
 

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
@@ -14,11 +15,15 @@ import com.islamzada.productslistapp.di.MyApplication
 
 import com.islamzada.productslistapp.entity.Product
 import com.islamzada.productslistapp.viewModels.AddPostViewModel
+import com.islamzada.productslistapp.viewModels.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
+@AndroidEntryPoint
 class AddProductFragment : Fragment() {
     private lateinit var binding: FragmentAddProductBinding
-    private lateinit var viewModel: AddPostViewModel
+//    private lateinit var viewModel: AddPostViewModel
+
+    val viewModel: AddPostViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +31,8 @@ class AddProductFragment : Fragment() {
     ): View {
         binding = FragmentAddProductBinding.inflate(inflater, container, false)
 
-        viewModel = ViewModelProvider(this)[AddPostViewModel::class.java]
-        viewModel.productRepository = (activity?.application as MyApplication).repository
+//        viewModel = ViewModelProvider(this)[AddPostViewModel::class.java]
+//        viewModel.productRepository = (activity?.application as MyApplication).repository
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel

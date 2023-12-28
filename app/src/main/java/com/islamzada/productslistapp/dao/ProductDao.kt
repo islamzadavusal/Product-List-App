@@ -10,7 +10,7 @@ import com.islamzada.productslistapp.entity.Product
 //DAO - Data Access Object
 //CRUD - Create; Read; Update; Delete
 @Dao
-interface  ProductDao {
+interface ProductDao {
 
     @Insert
     suspend fun insert(product: Product)

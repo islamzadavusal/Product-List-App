@@ -9,7 +9,6 @@
             name="viewModel"
             type="com.islamzada.productslistapp.viewModels.AddPostViewModel" />
 
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,6 +16,23 @@
         android:layout_height="match_parent"
         android:background="@color/background"
         tools:context=".features.newproduct.AddProductActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/status_bar"
+                app:titleTextColor="@color/white"
+                app:title="Add Product" />
+
+        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -37,10 +53,10 @@
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                android:background="@color/white"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -6,10 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.islamzada.productslistapp.entity.Product
 import com.islamzada.productslistapp.repository.ProductRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
+@HiltViewModel
+class MainViewModel @Inject constructor (var repository: ProductRepository): ViewModel() {
 
-class MainViewModel: ViewModel() {
-    lateinit  var productRepository: ProductRepository
+//    lateinit  var productRepository: ProductRepository
 
 //    var addProductObserver = MutableLiveData<Boolean>()
 //
@@ -18,12 +21,12 @@ class MainViewModel: ViewModel() {
 //    }
 
     fun getAllData(): LiveData<List<Product>> {
-        return productRepository.getAll()
+        return repository.getAll()
     }
 
     fun delete(product: Product) {
         viewModelScope.launch {
-            productRepository.delete(product)
+            repository.delete(product)
         }
     }
 

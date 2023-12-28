@@ -11,20 +11,24 @@ import com.islamzada.productslistapp.entity.Product
 abstract class AppDatabase : RoomDatabase() {
     abstract fun productDao(): ProductDao
 
-    companion object {
-        private var database : AppDatabase? = null
-
-        fun getDatabase(context: Context) : AppDatabase {
-            if(database != null) {
-                return database!!
-            } else {
-                database = Room.databaseBuilder(
-                    context,
-                    AppDatabase::class.java,
-                    "product").build()
-
-                return database!!
-            }
-        }
-    }
+    //Instance
+//    companion object {
+//        private var database : AppDatabase? = null
+//
+//        fun getDatabase(context: Context) : AppDatabase {
+//            if(database != null) {
+//                return database!!
+//            } else {
+//                synchronized(this){
+//                    database = Room.databaseBuilder(
+//                        context,
+//                        AppDatabase::class.java,
+//                        "product").build()
+//
+//                    return database!!
+//
+//                }
+//            }
+//        }
+//    }
 }

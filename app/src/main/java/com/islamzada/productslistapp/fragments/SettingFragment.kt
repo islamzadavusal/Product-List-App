@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import com.islamzada.productslistapp.R
 import com.islamzada.productslistapp.databinding.FragmentDetailsBinding
 import com.islamzada.productslistapp.databinding.FragmentSettingBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SettingFragment : Fragment() {
     private lateinit var binding: FragmentSettingBinding
 

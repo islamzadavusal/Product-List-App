@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.islamzada.productslistapp.R
@@ -12,19 +13,24 @@ import com.islamzada.productslistapp.adapter.ProductListAdapter
 import com.islamzada.productslistapp.databinding.FragmentMainBinding
 import com.islamzada.productslistapp.di.MyApplication
 import com.islamzada.productslistapp.entity.Product
+import com.islamzada.productslistapp.viewModels.AddPostViewModel
 import com.islamzada.productslistapp.viewModels.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
     private lateinit var adapter: ProductListAdapter
-    private lateinit var viewModel: MainViewModel
+//    private lateinit var viewModel: MainViewModel
+
+    val viewModel: MainViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?
     ): View? {
 
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+//        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        viewModel.productRepository = (activity?.application as MyApplication).repository
+//        viewModel.productRepository = (activity?.application as MyApplication).repository
 
         binding = FragmentMainBinding.inflate(inflater)
 
